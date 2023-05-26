@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
-import { SignUpUser } from "@/types/User";
+
 import connectDb from "@/lib/mongoose";
 import User from "@/models/user";
 import bcrypt from 'bcrypt'
+import { IUser } from "@/types/User";
 
 
 export async function POST(req: Request) {
-  const user : SignUpUser = await req.json();
+  const user : IUser = await req.json();
   try {
      await connectDb();
     const userExist = await User.exists({username : user.username})

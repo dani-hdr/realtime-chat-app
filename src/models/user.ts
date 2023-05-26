@@ -1,4 +1,6 @@
-import { Schema,model,models } from "mongoose";
+
+import { IUser } from "@/types/User";
+import { Schema,model,models,Document } from "mongoose";
 
 const userSchema = new Schema({
     username:{
@@ -11,5 +13,7 @@ const userSchema = new Schema({
     }
 })
 
-const User = models.User || model('User',userSchema)
+
+
+const User = models.User || model<IUser,Document>('User',userSchema)
 export default User;

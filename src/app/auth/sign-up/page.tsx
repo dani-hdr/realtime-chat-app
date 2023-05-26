@@ -1,5 +1,5 @@
 "use client";
-import { SignUpUser } from "@/types/User";
+
 import { useFormik, FormikProps } from "formik";
 import Image from "next/image";
 import { useState } from "react";
@@ -38,8 +38,11 @@ const SignUpPage = () => {
       handleSignUpUser(values);
     },
   });
-
-  const handleSignUpUser = async (user: SignUpUser) => {
+  interface signupUser {
+    username:string,
+    password:string
+  }
+  const handleSignUpUser = async (user: signupUser) => {
     setLoading(true);
    try{
     const res = await axios.post<GenericResponse>('/users',user)
@@ -112,7 +115,7 @@ const SignUpPage = () => {
                 {!loading && 'Sign Up'}
               </button>
             </form>
-            <p className="mt-5 text-sm text-slate-400">Already have account?<Link className="font-bold text-slate-950 ml-1" href='/auth/sign-in'>Sign In</Link></p>
+            <p className="mt-5 text-sm text-slate-400">Already have an account?<Link className="font-bold text-slate-950 ml-1" href='/auth/sign-in'>Sign In</Link></p>
           </div>
         </div>
       </div>
